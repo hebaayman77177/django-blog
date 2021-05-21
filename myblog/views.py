@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, EditPostForm
 
 # Create your views here.
 class HomeView(ListView):
@@ -9,12 +9,18 @@ class HomeView(ListView):
     template_name = "home.html"
 
 
-class ArticleDetailView(DetailView):
+class PostDetailView(DetailView):
     model = Post
-    template_name = "article_details.html"
+    template_name = "post_details.html"
 
 
 class AddPostView(CreateView):
     model = Post
     form_class = PostForm
-    template_name = "add_post.html"
+    template_name = "post_form/add_post.html"
+
+
+class EditPostView(UpdateView):
+    model = Post
+    form_class = EditPostForm
+    template_name = "post_form/update_post.html"
