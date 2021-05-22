@@ -13,6 +13,7 @@ from .forms import PostForm, EditPostForm, CategoryForm
 
 # Create your views here.
 def CategoryView(request, category_name):
+    category_name=category_name.replace("-", " ")
     category = Category.objects.get(name=category_name)
     print(category)
     posts = Post.objects.filter(category=category)
@@ -50,7 +51,7 @@ class DeletePostView(DeleteView):
     template_name = "post_form/delete_post.html"
     success_url = reverse_lazy("home")
 
-
+# todo make the category when saved be small case
 class AddCategoryView(CreateView):
     model = Post
     form_class = CategoryForm
