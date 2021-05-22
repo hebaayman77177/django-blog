@@ -8,10 +8,19 @@ from django.views.generic import (
 )
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
-from .models import Post
+from .models import Category, Post
 from .forms import PostForm, EditPostForm, CategoryForm
 
 # Create your views here.
+def CategoryView(request, category_name):
+    category = Category.objects.get(name=category_name)
+    print(category)
+    posts = Post.objects.filter(category=category)
+    print(posts)
+    context = {"category": category, "posts": posts}
+    return render(request, "categories.html", context)
+
+
 class HomeView(ListView):
     model = Post
     template_name = "home.html"

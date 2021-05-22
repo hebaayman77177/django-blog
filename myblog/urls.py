@@ -1,6 +1,14 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import HomeView,PostDetailView,AddPostView,EditPostView,DeletePostView,AddCategoryView
+from .views import (
+    HomeView,
+    PostDetailView,
+    AddPostView,
+    EditPostView,
+    DeletePostView,
+    AddCategoryView,
+    CategoryView
+)
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
@@ -9,4 +17,5 @@ urlpatterns = [
     path("post/edit/<int:pk>", EditPostView.as_view(), name="edit-post"),
     path("post/delete/<int:pk>", DeletePostView.as_view(), name="delete-post"),
     path("add-category", AddCategoryView.as_view(), name="add-category"),
+    path("category/<str:category_name>", CategoryView, name="category-detail"),
 ]
