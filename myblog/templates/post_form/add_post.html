@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block title %} create post {% endblock %}
-{% block content %} 
+{% block content %}
 {% if user.is_authenticated %}
 <h1>Add Post...</h1>
 <br />
-{% include 'post_form/form.html' %} 
-{% else %} <b></b>not allowed !!</b> 
-{% endif %} 
+{% include 'post_form/form.html' %}
+{% else %} <b></b>not allowed !!</b>
+{% endif %}
+
+<script>
+    var id = "{{ user.id }}"
+    document.getElementById("create-post-user").value = id
+</script>
 {% endblock %}
