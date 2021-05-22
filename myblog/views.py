@@ -9,13 +9,13 @@ from django.views.generic import (
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 from .models import Post
-from .forms import PostForm, EditPostForm
+from .forms import PostForm, EditPostForm, CategoryForm
 
 # Create your views here.
 class HomeView(ListView):
     model = Post
     template_name = "home.html"
-    ordering = ['-post_date']
+    ordering = ["-post_date"]
 
 
 class PostDetailView(DetailView):
@@ -39,4 +39,11 @@ class DeletePostView(DeleteView):
     model = Post
     # form_class = EditPostForm
     template_name = "post_form/delete_post.html"
+    success_url = reverse_lazy("home")
+
+
+class AddCategoryView(CreateView):
+    model = Post
+    form_class = CategoryForm
+    template_name = "category_form/add.html"
     success_url = reverse_lazy("home")

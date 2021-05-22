@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %} create post {% endblock %}
+{% block content %} 
+{% if user.is_authenticated %}
+<h1>Add Item...</h1>
+<br />
+{% include 'category_form/form.html' %} 
+{% else %} <b></b>not allowed !!</b> 
+{% endif %} 
+{% endblock %}
