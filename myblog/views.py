@@ -14,9 +14,10 @@ from django.http import HttpResponseRedirect
 
 # Create your views here.
 def LikeView(request, pk):
-    post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    post.likes.add(request.user)
-    return HttpResponseRedirect(reverse('post_details', args=[str(pk)]))
+    post = get_object_or_404(Post, id = request.POST.get('post_id'))
+    print (post)
+    # post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
     
 
 def CategoryView(request, category_name):
