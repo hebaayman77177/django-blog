@@ -4,10 +4,26 @@
 -{{post.post_date}}
 <small>By{{post.author}}</small>
 <br />
-{{post.body|safe}} {% if user.is_authenticated and user.id == post.author.id   %}
+{{post.body|safe}} {% if user.is_authenticated and user.id == post.author.id %}
 <a href="{% url 'edit-post' post.pk %}">[edit]</a>
 <a href="{% url 'delete-post' post.pk %}">[delete]</a>
 {% endif %}
 <a href="{% url 'home' %}">Back</a>
+
+<br /><br />
+<hr />
+<br />
+
+<form action="{% url 'like_post' post.pk %}" method="POST">
+  {% csrf_token %}
+  <button
+    type="submit",
+    name="post_id",
+    value="{{ post.id }}",
+    class="btn btn-primary btn-sm"
+  >
+    Like
+  </button>
+</form>
 
 {% endblock %}

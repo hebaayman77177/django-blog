@@ -20,6 +20,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_DEFAULT, default=1)
     body = models.TextField()
     post_date = models.DateField(auto_now_add=True)
+    likes= models.ManyToManyField(User, related_name='blog_posts')
 
     def __str__(self):
         return self.title + " | " + str(self.author)
