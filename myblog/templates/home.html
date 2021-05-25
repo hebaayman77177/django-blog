@@ -5,8 +5,9 @@
   <li>
     <a href="{% url 'post-detail' post.pk %}">{{post.title}}-</a>
     <a href="{% url 'category-detail' post.category|slugify %}">{{post.category}}</a>
-    -{{post.author}}
-    <p>{{ post.body| slice:":200"| safe }}</p>
+    -{{post.author}} <br>
+    <small>{{post.snippet}}</small>
+
     {% if user.is_authenticated and user.id == post.author.id  %}
     <a href="{% url 'edit-post' post.pk %}">[edit]</a>
     <a href="{% url 'delete-post' post.pk %}">[delete]</a>

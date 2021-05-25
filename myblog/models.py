@@ -18,10 +18,13 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     title_tag = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.SET_DEFAULT, default=1)
+    category = models.ForeignKey(Category,
+                                 on_delete=models.SET_DEFAULT,
+                                 default=1)
+    snippet = models.CharField(max_length=255, default="Click Link Above To Read Blog......")
     body = RichTextField(blank=True, null=True)
     post_date = models.DateField(auto_now_add=True)
-    likes= models.ManyToManyField(User, related_name='blog_posts')
+    likes = models.ManyToManyField(User, related_name='blog_posts')
 
     def __str__(self):
         return self.title + " | " + str(self.author)
