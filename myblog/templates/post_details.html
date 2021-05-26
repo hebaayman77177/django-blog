@@ -4,11 +4,9 @@
 -{{post.post_date}}
 <small>By{{post.author}}</small>
 <br />
-{{post.body|safe}}
-{% if post.header_image %}
-    <img src="{{post.header_image.url}}"/> <br><br>
- {% endif %}
-    {% if user.is_authenticated and user.id == post.author.id %}
+{{post.body|safe}} {% if post.header_image %}
+<img src="{{post.header_image.url}}" /> <br /><br />
+{% endif %} {% if user.is_authenticated and user.id == post.author.id %}
 <a href="{% url 'edit-post' post.pk %}">[edit]</a>
 <a href="{% url 'delete-post' post.pk %}">[delete]</a>
 {% endif %}
@@ -21,13 +19,61 @@
 <form action="{% url 'like_post' post.pk %}" method="POST">
   {% csrf_token %}
   <button
-    type="submit",
-    name="post_id",
-    value="{{ post.id }}",
+    type="submit"
+    ,
+    name="post_id"
+    ,
+    value="{{ post.id }}"
+    ,
     class="btn btn-primary btn-sm"
   >
     Like
   </button>
 </form>
+<br /><br />
+
+<div class="card mb-3" style="max-width: 540px">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      {% if post.author.profile.profile_pic %}
+      <img
+        src="{{post.author.profile.profile_pic.url}}"
+        width="400"
+        height="200"
+        class="card-img"
+        alt="..."
+      />
+      {% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{post.author}}</h5>
+        <p class="small text-muted">
+          {% if post.author.profile.fb_url %}
+          <a href="{{post.author.profile.fb_url}}">Facebook</a> |
+          {% endif %}
+
+          {% if post.author.profile.instgram_url %}
+          <a href="{{post.author.profile.instgram_url}}">Instgram</a> |
+          {% endif %}
+
+          {% if post.author.profile.twitter_url %}
+          <a href="{{post.author.profile.twitter_url}}">Twitter</a> |
+          {% endif %}
+
+          {% if post.author.profile.website_url %}
+          <a href="{{post.author.profile.website_url}}">Website</a> |
+          {% endif %}
+
+          {% if post.author.profile.pintrest_url %}
+          <a href="{{post.author.profile.pintrest_url}}">Pintrest</a> |
+          {% endif %}
+
+        </p>
+        <p class="card-text">{{post.author.profile.bio}}</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
