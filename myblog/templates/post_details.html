@@ -5,10 +5,10 @@
 <small>By{{post.author}}</small>
 <br />
 {{post.body|safe}}
-<% if post.header_image %>
-<img src="{{post.header_image.url}}"/> <br><br>
-<% endif %>
- {% if user.is_authenticated and user.id == post.author.id %}
+{% if post.header_image %}
+    <img src="{{post.header_image.url}}"/> <br><br>
+ {% endif %}
+    {% if user.is_authenticated and user.id == post.author.id %}
 <a href="{% url 'edit-post' post.pk %}">[edit]</a>
 <a href="{% url 'delete-post' post.pk %}">[delete]</a>
 {% endif %}
