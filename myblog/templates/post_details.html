@@ -3,7 +3,7 @@
 {% block title %} {{post.title_tag}} {% endblock %}
 {%block content %}
 <h1>{{post.title}}</h1>
--{{post.post_date}}
+ {{post.post_date}}
 <small>By{{post.author}}</small>
 <br />
 {{post.body|safe}} {% if post.header_image %}
@@ -61,17 +61,17 @@
       <div class="card-body">
         <h5 class="card-title">{{post.author}}</h5>
         <p class="small text-muted">
+          <a href="{% url 'show_prfile_page' post.author.profile.id %}">Profile Page</a> |
           {% if post.author.profile.fb_url %}
-          <a href="{{post.author.profile.fb_url}}">Facebook</a> | {% endif %} {%
-          if post.author.profile.instgram_url %}
-          <a href="{{post.author.profile.instgram_url}}">Instgram</a> | {% endif
-          %} {% if post.author.profile.twitter_url %}
-          <a href="{{post.author.profile.twitter_url}}">Twitter</a> | {% endif
-          %} {% if post.author.profile.website_url %}
-          <a href="{{post.author.profile.website_url}}">Website</a> | {% endif
-          %} {% if post.author.profile.pintrest_url %}
-          <a href="{{post.author.profile.pintrest_url}}">Pintrest</a> | {% endif
-          %}
+          <a href="{{post.author.profile.fb_url}}">Facebook</a> | {% endif %}
+           {%if post.author.profile.instgram_url %}
+          <a href="{{post.author.profile.instgram_url}}">Instgram</a> | {% endif%}
+           {% if post.author.profile.twitter_url %}
+          <a href="{{post.author.profile.twitter_url}}">Twitter</a> | {% endif %} 
+          {% if post.author.profile.website_url %}
+          <a href="{{post.author.profile.website_url}}">Website</a> | {% endif %} 
+          {% if post.author.profile.pintrest_url %}
+          <a href="{{post.author.profile.pintrest_url}}">Pintrest</a> | {% endif %}
         </p>
         <p class="card-text">{{post.author.profile.bio}}</p>
       </div>
