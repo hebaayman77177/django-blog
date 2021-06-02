@@ -8,7 +8,8 @@ from .views import (
     DeletePostView,
     AddCategoryView,
     CategoryView,
-    LikeView
+    LikeView,
+    AddCommentView
 )
 
 urlpatterns = [
@@ -20,4 +21,6 @@ urlpatterns = [
     path("add-category", AddCategoryView.as_view(), name="add-category"),
     path("category/<str:category_name>", CategoryView, name="category-detail"),
     path("like/<int:pk>", LikeView, name="like_post"),
+    path("article/<int:pk>/comment", AddCommentView.as_view(), name="add-comment"),
+
 ]

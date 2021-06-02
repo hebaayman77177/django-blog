@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.base import Model
+from django.db.models.deletion import CASCADE
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 
@@ -43,13 +45,24 @@ class Profile(models.Model):
     twitter_url = models.CharField(max_length=255, null=True, blank=True)
     pintrest_url = models.CharField(max_length=255, null=True, blank=True)
 
-
-
-
-
-
-
-
+class Comment(models.Model):
+    post = models.ForeignKey(Post,related_name="comments" ,on_delete=CASCADE)
+    name = models.CharField(max_length=255)
+    body = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.user)
+        return '%s - %s' % (self.post.title, self.name)
+
+
+
+
+
+
+
+
+
+
+
+
+
