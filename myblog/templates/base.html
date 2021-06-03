@@ -67,7 +67,7 @@
                 >Create Category</a
               >
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
               <!-- <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -78,8 +78,9 @@
               >
                 Profile
               </a> -->
-              <a class="nav-link" href="{% url 'edit_profile' %}">Edit Profile</a>
-             
+              <a class="nav-link" href="{% url 'edit_profile' %}"
+                >Edit Profile</a
+              >
             </li>
 
             <li class="nav-item">
@@ -94,6 +95,13 @@
             </li>
             {% endif %}
           </ul>
+          {% if user.is_authenticated %}
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'edit_profile' %}">{{user.first_name}} {{user.last_name}}</a>
+            </li>
+          </ul>
+          {% endif %}
         </div>
       </div>
     </nav>

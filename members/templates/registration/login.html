@@ -2,4 +2,28 @@
 {%block content %}
 <h1>Login</h1>
 <br />
-{% include 'registration/form.html' %} {% endblock %}
+<div class="form-group">
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" name="username"
+      placeholder="Username..." />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Password..."
+      />
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+  <br>
+    Not Registerd? Sign Up <a href="{% url 'register' %}">Here ...</a>
+</div>
+{% endblock %}
